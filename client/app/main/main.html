@@ -2,7 +2,7 @@
     <div ng-include="'components/navbar/navbar.html'"></div>
 
     <!-- Page Content -->
-    <div class="container" ng-if="!userPlace.id">
+    <div class="container" ng-if="!userPlace.id && !isFirstSearchHappend">
 
         <div class="row holder">
 
@@ -66,9 +66,8 @@
             <div class="col-md-3">
                 <p class="lead">Filter</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                    <a href="#" class="list-group-item">Popularity</a>
+                    <a href="#" class="list-group-item">Nearest</a>
                 </div>
             </div>
 

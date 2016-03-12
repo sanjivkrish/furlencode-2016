@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('nightOwlApp')
-.controller('MainCtrl', function ($scope, $location, $http, locationInfo) {
+.controller('MainCtrl', function ($scope, $location, $http, locationInfo, userInfo) {
 	$scope.userPlace = {};
+	$scope.isFirstSearchHappend = false;
+	var userLat;
+	var userLng;
 	//
 	// Watch function to search box
 	//
@@ -18,8 +21,11 @@ angular.module('nightOwlApp')
 	$scope.placeChanged = function () {
 		console.log($scope.userPlace);
 		locationInfo.setUserPlace($scope.userPlace);
-		$scope.initializeMap($scope.userPlace.geometry.location.lat(), $scope.userPlace.geometry.location.lng(), 15);
-		$scope.getShopInfo($scope.userPlace.geometry.location.lat(), $scope.userPlace.geometry.location.lng());
+		userLat = $scope.userPlace.geometry.location.lat();
+		userLng = $scope.userPlace.geometry.location.lng();
+		$scope.isFirstSearchHappend = true;
+		$scope.initializeMap(userLat, userLng, 15);
+		$scope.getShopInfo(userLat, userLng);
 	};
 
 	//
@@ -92,7 +98,7 @@ angular.module('nightOwlApp')
 
   function calculateAndDisplayRoute(directionsService, directionsDisplay, lat, lng) {
     directionsService.route({
-      origin: {lat: $scope.userPlace.geometry.location.lat(), lng: $scope.userPlace.geometry.location.lng()},
+      origin: {lat: userLat, lng: userLng},
       destination: {lat: lat, lng: lng},
       travelMode: google.maps.TravelMode.DRIVING
     }, function(response, status) {
@@ -113,10 +119,12 @@ angular.module('nightOwlApp')
 	}
 
 	function showPosition(position) {
-	    console.log("Latitude: " + position.coords.latitude + 
-	    "Longitude: " + position.coords.longitude);
+	    userLat = position.coords.latitude;
+	    userLng = position.coords.longitude;
 	    $scope.userPlace.id = 123;
-	    $scope.initializeMap(position.coords.latitude, position.coords.longitude, 15);
-	    $scope.getShopInfo(position.coords.latitude, position.coords.longitude);
+	    $scope.isFirstSearchHappend = true;
+	    $scope.initializeMap(userLat, userLng, 15);
+	    $scope.getShopInfo(userLat, userLng);
 	}
+
 });
