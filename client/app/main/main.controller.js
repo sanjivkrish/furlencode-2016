@@ -2,6 +2,7 @@
 
 angular.module('nightOwlApp')
 .controller('MainCtrl', function ($scope, $location, $http, locationInfo) {
+	$scope.userPlace = {};
 	//
 	// Watch function to search box
 	//
@@ -42,6 +43,7 @@ angular.module('nightOwlApp')
   // This function is triggered when user searches for the location
   //
   $scope.getShopInfo = function (lat, lng) {
+  	try {
       $http.get('https://api.foursquare.com/v2/venues/explore?ll=' + lat + ',' + lng +
       '&oauth_token=2NTXCBLHM4A1P52VKVXYXQLFVSGMPGVLHGDZL4PTPNWZI2IR&v=20150528')
 	      .success(function (data) {
@@ -51,6 +53,9 @@ angular.module('nightOwlApp')
 	      .error(function (data) {
 	          console.log('error in foursquare API');
 	      });
+	   } catch (e) {
+	   		console.log('Catched :' + e);
+	   }
   };
 
   //
@@ -98,4 +103,20 @@ angular.module('nightOwlApp')
       }
     });
   }
+
+  $scope.getLocation = function () {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+        console.log("Geolocation is not supported by this browser.");
+    }
+	}
+
+	function showPosition(position) {
+	    console.log("Latitude: " + position.coords.latitude + 
+	    "Longitude: " + position.coords.longitude);
+	    $scope.userPlace.id = 123;
+	    $scope.initializeMap(position.coords.latitude, position.coords.longitude, 15);
+	    $scope.getShopInfo(position.coords.latitude, position.coords.longitude);
+	}
 });
