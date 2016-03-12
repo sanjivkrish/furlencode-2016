@@ -4,7 +4,7 @@
     <!-- Page Content -->
     <div class="container" ng-if="!userPlace.id">
 
-        <div class="row">
+        <div class="row holder">
 
             <div class="col-md-9">
 
@@ -60,7 +60,7 @@
 
 <div class="container" ng-if="userPlace.id">
 
-        <div class="row11">
+        <div class="row">
 
             <div class="col-md-3">
                 <p class="lead">Filter</p>
@@ -71,11 +71,11 @@
                 </div>
             </div>
 
-            <div class="col-md11-9">
+            <div class="col-md-9">
 
-                <div class="row11">
+                <div class="row">
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="hotel in suggestedHotels">
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
