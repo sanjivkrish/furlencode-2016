@@ -79,19 +79,16 @@
                         <div class="thumbnail">
                             <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
-                                <h4 class="pull-right">$24.99</h4>
-                                <h4><a href="#">First Product</a>
+                                <h6 class="pull-right"><button class="btn" ng-click="getDirection(hotel.venue)">Get Direction</button></h6>
+                                <h4><a href="#">{{hotel.venue.name}}</a>
                                 </h4>
                                 <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
                             </div>
                             <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
+                                <p class="pull-right">{{hotel.venue.ratingSignals}} reviews</p>
                                 <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star" ng-repeat="star in getNumber(hotel.venue.rating) track by $index"></span>
+                                    <span class="glyphicon glyphicon-star half" ng-if="isRatingFloat(hotel.venue.rating)"></span>
                                 </p>
                             </div>
                         </div>
