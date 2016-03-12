@@ -1,1 +1,5 @@
-<div>this is the login directive</div>
+<div>
+	<a ng-if="!userInfo.id" ng-click="login()">Login</a>
+    <a ng-if="userInfo.id" ng-click="logout()">Logout</a>
+    <label>{{userInfo.name}}</label>
+</div>
