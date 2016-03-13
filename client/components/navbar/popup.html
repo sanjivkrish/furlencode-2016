@@ -28,17 +28,17 @@
 	<p style="color: red" ng-if="!userInfo.id">Please LOGIN to rate us...!!!</p>
 	<form name="rate">
 	<fieldset ng-disabled="!userInfo.id">
-		<input type="radio"ng-model="userRating.value" value="1"> 1 </input>
-		<input type="radio"ng-model="userRating.value" value="2"> 2 </input>
-		<input type="radio"ng-model="userRating.value" value="3"> 3 </input>
-		<input type="radio"ng-model="userRating.value" value="4"> 4 </input>
-		<input type="radio"ng-model="userRating.value" value="5"> 5 </input>
+		<input type="radio" ng-model="userRating.value" value="1"> 1 </input>
+		<input type="radio" ng-model="userRating.value" value="2"> 2 </input>
+		<input type="radio" ng-model="userRating.value" value="3"> 3 </input>
+		<input type="radio" ng-model="userRating.value" value="4"> 4 </input>
+		<input type="radio" ng-model="userRating.value" value="5"> 5 </input>
 
 		<div>
 			<textarea placeholder="leave a comment" ng-model="userRating.comment"></textarea>
 		</div>
 
-		<input type="submit" ng-click="closeDialog(userRating)"></input>
+		<input type="submit" ng-disabled="!userRating.value && !userRating.comment" ng-click="closeDialog(userRating)"></input>
 	</fieldset>
 	</form>
 </div>
