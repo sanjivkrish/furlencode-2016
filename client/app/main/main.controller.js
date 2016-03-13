@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('nightOwlApp')
-.controller('MainCtrl', function ($scope, $location, $http, locationInfo, userInfo) {
+.controller('MainCtrl', function ($scope, $location, $http, locationInfo, userInfo, ngDialog) {
 	$scope.userPlace = {};
 	$scope.isFirstSearchHappend = false;
 	var userLat;
 	var userLng;
+  var dialog;
 	//
 	// Watch function to search box
 	//
@@ -127,4 +128,20 @@ angular.module('nightOwlApp')
 	    $scope.getShopInfo(userLat, userLng);
 	}
 
+  $scope.dialogOpen = function (hotel) {
+    console.log(hotel);
+    $scope.hotel = hotel;
+    dialog = ngDialog.open({ 
+      template: './components/navbar/popup.html',
+      scope: $scope,
+      showClose: true,
+      closeByDocument: true,
+      closeByEscape: true
+    });
+  };
+
+  $scope.closeDialog = function (userRating) {
+    console.log(userRating);
+    dialog.close();
+  };
 });
