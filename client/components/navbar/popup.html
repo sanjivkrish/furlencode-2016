@@ -25,7 +25,9 @@
 
 <div>
 	<h4><b>Leave a Rating</b></h4>
+	<p style="color: red" ng-if="!userInfo.id">Please LOGIN to rate us...!!!</p>
 	<form name="rate">
+	<fieldset ng-disabled="!userInfo.id">
 		<input type="radio"ng-model="userRating.value" value="1"> 1 </input>
 		<input type="radio"ng-model="userRating.value" value="2"> 2 </input>
 		<input type="radio"ng-model="userRating.value" value="3"> 3 </input>
@@ -37,5 +39,6 @@
 		</div>
 
 		<input type="submit" ng-click="closeDialog(userRating)"></input>
+	</fieldset>
 	</form>
 </div>
