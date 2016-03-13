@@ -49,12 +49,14 @@
 <div class="container inner-addon">
     <h4>Lets HUNT for the FOOD...!!!!</h4>
 </div>
-
+<br />
+<br />
 <div class="inner-addon right-addon">
     <i class="glyphicon glyphicon-search"></i>
-    <input type="text" class="form-control" placeholder="Search" g-places-autocomplete ng-model="userPlace"
+    <input type="text" class="form-control" placeholder="Location" g-places-autocomplete ng-model="userPlace"
     ng-change="changePlace()"/>
-    <span class="custombtn"><button class="btn" ng-click="getLocation()">Current Location</button></span>
+    <br>
+    <span class="custombtn"><button class="btn" ng-click="getLocation()">Take My Current Location</button></span>
 </div>
 
 <div id="map-canvas"></div>
@@ -82,7 +84,7 @@
                                 <h6 class="pull-right"><button class="btn" ng-click="getDirection(hotel.venue)">Get Direction</button></h6>
                                 <h4><a href="#">{{hotel.venue.name}}</a>
                                 </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                <p ng-if="hotel.venue.categories[0].name">{{hotel.venue.categories[0].name}}</p>
                             </div>
                             <div class="ratings">
                                 <p class="pull-right">{{hotel.venue.ratingSignals}} reviews</p>
