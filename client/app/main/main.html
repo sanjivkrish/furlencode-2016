@@ -77,7 +77,7 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="hotel in suggestedHotels">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="http://placehold.it/320x150" alt="" ng-click="dialogOpen(hotel)">
                             <div class="caption">
                                 <h6 class="pull-right"><button class="btn" ng-click="getDirection(hotel.venue)">Get Direction</button></h6>
                                 <h4><a href="#">{{hotel.venue.name}}</a>
