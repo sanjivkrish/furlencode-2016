@@ -8,7 +8,7 @@ angular.module('nightOwlApp')
       link: function (scope, element, attrs) {
       },
       controller: function ($scope, $http, userInfo) {
-      	$scope.userInfo = userInfo;
+      	$scope.userInfo = userInfo.data;
 
 		var user = {}; //To store the information about the user
 		var userinfo = {}; //Json object to receive the user details
@@ -68,7 +68,8 @@ angular.module('nightOwlApp')
 		function getUserInfo() {
 		    $http.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken)
 		        .success( function(resp) {
-		            $scope.userInfo = resp; //Receiving the user information
+		            $scope.userInfo = resp;
+		            userInfo.setInfo(resp);
 		            console.log($scope.userInfo);
 		        })
 		        .error(function (err) {
@@ -79,6 +80,7 @@ angular.module('nightOwlApp')
 	  	//Deleting the cookie
 		$scope.logout = function () {
 			$scope.userInfo = {};
+			userInfo.setInfo({});
 		    $http.get("https://accounts.google.com/o/oauth2/revoke?token="+acToken)
 		            .success(function(responseText){  
 		                $scope.userInfo = {};
