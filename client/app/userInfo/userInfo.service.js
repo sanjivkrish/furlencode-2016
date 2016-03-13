@@ -6,10 +6,16 @@ angular.module('nightOwlApp')
     	data : {}
     };
 
+    //
+    // returns user information
+    //
 	userInfo.getInfo = function () {
 		return userInfo.data;
 	};
 
+	//
+	// Set the user information
+	//
 	userInfo.setInfo = function (val) {
 		userInfo.data = val;
 	};

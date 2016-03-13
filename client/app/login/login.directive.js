@@ -14,6 +14,9 @@ angular.module('nightOwlApp')
 		var userinfo = {}; //Json object to receive the user details
 		var acToken; //Google authentication token
 
+		//
+		// Keys are obtained with google
+		//
 		var OAUTHURL    =   'https://accounts.google.com/o/oauth2/auth?';
 		var VALIDURL    =   'https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=';
 		var SCOPE       =   'email';
@@ -40,7 +43,9 @@ angular.module('nightOwlApp')
 		    }, 100);
 		};
 
-		//Validating the access token
+		//
+		// Validating the access token
+		//
 		function validateToken(token) {
 		    $http.get(VALIDURL + token)
 		        .success(function(responseText){  
@@ -52,7 +57,9 @@ angular.module('nightOwlApp')
 		        })
 		}
 
-		//To structure the url
+		//
+		// To structure the url
+		//
 		function gup(url, name) {
 		    name = name.replace(/[[]/,"\[").replace(/[]]/,"\]");
 		    var regexS = "[\?&#]"+name+"=([^&#]*)";
@@ -64,7 +71,9 @@ angular.module('nightOwlApp')
 		        return results[1];
 		}
 
-		//Getting the details of the user
+		//
+		// Getting the details of the user
+		//
 		function getUserInfo() {
 		    $http.get('https://www.googleapis.com/oauth2/v1/userinfo?access_token=' + acToken)
 		        .success( function(resp) {
@@ -77,7 +86,9 @@ angular.module('nightOwlApp')
 		        });
 	  	}
 
-	  	//Deleting the cookie
+	  	//
+	  	// Deleting the cookie
+	  	//
 		$scope.logout = function () {
 			$scope.userInfo = {};
 			userInfo.setInfo({});

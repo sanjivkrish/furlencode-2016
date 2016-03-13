@@ -4,6 +4,10 @@ angular.module('nightOwlApp')
 .controller('MainCtrl', function ($scope, $location, $http, locationInfo, userInfo, ngDialog) {
 	$scope.userPlace = {};
 	$scope.isFirstSearchHappend = false;
+
+  //
+  // Temp data to store user's lat and lng value
+  //
 	var userLat;
 	var userLng;
   var dialog;
@@ -86,6 +90,9 @@ angular.module('nightOwlApp')
 		$scope.initMap(venue.location.lat, venue.location.lng);
 	};
 
+  //
+  // Replace map with direction map
+  //
   $scope.initMap = function (lat, lng) {
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -97,6 +104,9 @@ angular.module('nightOwlApp')
     calculateAndDisplayRoute(directionsService, directionsDisplay, lat, lng);
   }
 
+  //
+  // Call google API to get directions
+  //
   function calculateAndDisplayRoute(directionsService, directionsDisplay, lat, lng) {
     directionsService.route({
       origin: {lat: userLat, lng: userLng},
@@ -111,6 +121,9 @@ angular.module('nightOwlApp')
     });
   }
 
+  //
+  // chrome geolocation to detect user location
+  //
   $scope.getLocation = function () {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -119,6 +132,9 @@ angular.module('nightOwlApp')
     }
 	}
 
+  //
+  // Callback to get the direction map
+  //
 	function showPosition(position) {
 	    userLat = position.coords.latitude;
 	    userLng = position.coords.longitude;
@@ -128,6 +144,9 @@ angular.module('nightOwlApp')
 	    $scope.getShopInfo(userLat, userLng);
 	}
 
+  //
+  // Open the info about the hotel
+  //
   $scope.dialogOpen = function (hotel) {
     $scope.hotel = hotel;
     $scope.userInfo = userInfo.getInfo();
@@ -140,6 +159,9 @@ angular.module('nightOwlApp')
     });
   };
 
+  //
+  // Close the opened dialog
+  //
   $scope.closeDialog = function (userRating) {
     $http.post('/api/ratings', {user: userInfo, data: userRating})
     .success(function () {
