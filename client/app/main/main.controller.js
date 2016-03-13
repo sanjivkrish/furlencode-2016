@@ -129,8 +129,8 @@ angular.module('nightOwlApp')
 	}
 
   $scope.dialogOpen = function (hotel) {
-    console.log(hotel);
     $scope.hotel = hotel;
+    $scope.userInfo = userInfo.getInfo();
     dialog = ngDialog.open({ 
       template: './components/navbar/popup.html',
       scope: $scope,
@@ -142,6 +142,7 @@ angular.module('nightOwlApp')
 
   $scope.closeDialog = function (userRating) {
     console.log(userRating);
+    console.log($scope.userInfo);
     dialog.close();
   };
 });
