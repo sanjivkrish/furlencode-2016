@@ -6,7 +6,8 @@ angular.module('nightOwlApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'google.places'
+  'google.places',
+  'ngDialog'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
