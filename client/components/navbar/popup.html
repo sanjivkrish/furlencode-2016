@@ -1,0 +1,41 @@
+<div>
+	<h3>
+		<b><a href="{{hotel.tips[0].canonicalUrl}}" target="_blank">{{hotel.venue.name}}</a></b>
+	</h3>
+</div>
+
+<div ng-if="hotel.venue.categories[0].name">
+	<h4><b>Category</b></h4>
+	<div>{{hotel.venue.categories[0].name}}</div>
+</div>
+
+<h4><b>Menu</b></h4>
+<div>------</div>
+
+<div ng-if="hotel.venue.location.formattedAddress[0]">
+	<h4><b>Address</b></h4>
+	<div ng-repeat="add in hotel.venue.location.formattedAddress">{{add}}</div>
+	<div ng-if="hotel.venue.contact.phone">Contact : {{hotel.venue.contact.phone}}</div>
+</div>
+
+<div ng-if="hotel.tips[0].text">
+	<h4><b>Comments</b></h4>
+	<div>"{{hotel.tips[0].text}}" - <b>{{hotel.tips[0].user.firstName}}</b></div>
+</div>
+
+<div>
+	<h4><b>Leave a Rating</b></h4>
+	<form name="rate">
+		<input type="radio"ng-model="userRating.value" value="1"> 1 </input>
+		<input type="radio"ng-model="userRating.value" value="2"> 2 </input>
+		<input type="radio"ng-model="userRating.value" value="3"> 3 </input>
+		<input type="radio"ng-model="userRating.value" value="4"> 4 </input>
+		<input type="radio"ng-model="userRating.value" value="5"> 5 </input>
+
+		<div>
+			<textarea placeholder="leave a comment" ng-model="userRating.comment"></textarea>
+		</div>
+
+		<input type="submit" ng-click="closeDialog(userRating)"></input>
+	</form>
+</div>
