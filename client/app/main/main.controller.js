@@ -141,8 +141,13 @@ angular.module('nightOwlApp')
   };
 
   $scope.closeDialog = function (userRating) {
-    console.log(userRating);
-    console.log($scope.userInfo);
+    $http.post('/api/ratings', {user: userInfo, data: userRating})
+    .success(function () {
+      console.log('success');
+    })
+    .error(function (err) {
+      console.log('err');
+    })
     dialog.close();
   };
 });
